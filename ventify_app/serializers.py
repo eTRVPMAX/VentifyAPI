@@ -42,7 +42,7 @@ class ReportSerializer(serializers.ModelSerializer):
 
 
 class TherapistSerializer(serializers.ModelSerializer):
-    average_rating = serializers.SerializerMethodField()  # Add this line
+    average_rating = serializers.SerializerMethodField()
 
     class Meta:
         model = Therapist
