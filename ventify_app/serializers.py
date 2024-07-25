@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.db import models
 from rest_framework.serializers import SlugRelatedField
 from .models import (
     Tag,
@@ -41,6 +42,14 @@ class ReportSerializer(serializers.ModelSerializer):
 
 
 class TherapistSerializer(serializers.ModelSerializer):
+    average_rating = serializers.SerializerMethodField()  # Add this line
+
     class Meta:
         model = Therapist
-        fields = ('id', 'name', 'credentials')
+        fields = ('id', 'name', 'credentials', 'average_rating')
+
+    def get_average_rating(self, obj):
+        feedbacks = Feedback.objects.filter(therapist=obj)
+        if feedbacks.exists():
+            return feedbacks.aggregate(models.Avg('rating'))['rating__avg']
+        return None
