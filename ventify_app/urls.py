@@ -5,6 +5,7 @@ urlpatterns = [
     path('vents/', views.vent_list, name='vent_list'),
     path('vents/create/', views.create_vent, name='create_vent'),
     path('vents/<int:vent_id>/love/', views.love_vent, name='love_vent'),
+    path('vents/<int:vent_id>/unlove/', views.unlove_vent, name='unlove-vent'),
     path('therapists/', views.list_therapists, name='therapists-list'),
     path('feedback/<slug:therapist_name>/', views.create_feedback, name='create_feedback'),
     path('vents/<int:vent_id>/report/', views.report_vent, name='report_vent'),
