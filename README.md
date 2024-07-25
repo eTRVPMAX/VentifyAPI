@@ -39,10 +39,10 @@ python manage.py runserver
 Access the api through a web browser at http://127.0.0.1:8000
 
 ## Features
-Create and share vents
-Like vents
-Discover therapists
-Feedback system
+- Create and share vents
+- Like vents
+- Discover therapists
+- Feedback system
 
 ## Technologies Used
 Python
