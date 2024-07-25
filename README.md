@@ -5,7 +5,7 @@ Ventify is a mental health support platform api designed to foster a sense of co
 ## Installation
 Clone the repository:
 ```
-git clone https://github.com/your-username/ventify.git
+git clone https://github.com/eTRVPMAX/ventify.git
 ```
 
 1. Create a virtual environment:
