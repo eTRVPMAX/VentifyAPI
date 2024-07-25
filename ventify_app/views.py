@@ -70,6 +70,27 @@ def love_vent(request, vent_id):
         return Response({'message': 'Vent loved successfully'})
     except Vent.DoesNotExist:
         return Response({'error': 'Vent not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['POST'])
+@user_uuid_required
+def unlove_vent(request, vent_id):
+    loved_vents = request.session.get('loved_vents', [])
+
+    if vent_id not in loved_vents:
+        return Response({'error': 'You have not loved this vent.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        vent = Vent.objects.get(pk=vent_id)
+        vent.love_count -= 1
+        vent.save()
+
+        # Remove vent ID from session
+        loved_vents.remove(vent_id)
+        request.session['loved_vents'] = loved_vents
+
+        return Response({'message': 'Vent unloved successfully'})
+    except Vent.DoesNotExist:
+        return Response({'error': 'Vent not found'}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['POST'])
 @user_uuid_required
